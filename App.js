@@ -30,7 +30,7 @@ function LoginScreen({navigation}) {
 
     const onPress= () => {
       if (username == "Sam" && password == "Sam" ) {
-          navigation.navigate('Register')
+          navigation.navigate('Wiki')
       }
       else {
         alert("Error")
@@ -62,6 +62,26 @@ function LoginScreen({navigation}) {
     </View>
   );
 }
+
+/*esta es la pagina de wiki, modificar boton por sidebar*/
+
+function WikiScreen({navigation}){
+    return (
+      <View style={styles.container3}>
+          <Image source={{uri: 'https://wp-mktg.prod.getty1.net/istockcontentredesign/wp-content/uploads/sites/5/2021/04/2021_Composite_2304x1274_hero.jpg.jpeg'}}
+          style={{width: 200, height: 200,}} />
+          <Image source={{uri: 'https://cdn.shopify.com/s/files/1/0229/0839/files/bancos_de_imagenes_gratis.jpg?v=1630420628&width=1024'}}
+          style={{width: 200, height: 200,}} />
+          <Image source={{uri: 'https://3dandroidwallpaper.com/wp-content/uploads/2018/03/Android-Wallpaper-HD-Goku-Imagenes.jpg'}}
+          style={{width: 200, height: 200,}} />
+
+          <Button onPress={() => navigation.navigate('Register')}  title="Continuar"  color="blue"
+          />
+        <StatusBar style="auto" />
+      </View>
+    );
+    }
+
 /*Brakmel estuvo aqui*/
 function RegisterScreen(){
     return (
@@ -83,6 +103,7 @@ function App() {
       <Stack.Navigator>
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Wiki" component={WikiScreen} />
         <Stack.Screen name="Register" component={RegisterScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
@@ -138,6 +159,13 @@ const styles = StyleSheet.create({
       borderColor: "blue",
       marginTop: 30,
       marginBottom: 30,
+    },
+      container3: {
+      backgroundColor: "#b2c8ff",
+      flexDirection: "column",
+      alignItems: "center",
+      paddingTop: 80,
+      flex: 1,
     },
     error: {
         opacity: 0.7,
