@@ -10,7 +10,7 @@ function WelcomeScreen({navigation}) {
    return (
        // para darle css/stilo a las etiquetas debes agregar un style={...}
     <View style={styles.container}>
-        <Image source={{uri: 'http://clipart-library.com/images_k/png-images-with-transparent-background/png-images-with-transparent-background-1.png'}} 
+        <Image source={{uri: 'http://clipart-library.com/images_k/png-images-with-transparent-background/png-images-with-transparent-background-1.png'}}
         style={{width: 300, height: 300,}} />
         <Text style={styles.subtitle}>
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
@@ -28,6 +28,15 @@ function LoginScreen({navigation}) {
    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
+    const onPress= () => {
+      if (username == "Sam" && password == "Sam" ) {
+          navigation.navigate('Register')
+      }
+      else {
+        alert("Error")
+      }
+    }
+
   return (
     <View style={styles.container2}>
         <TextInput
@@ -36,16 +45,18 @@ function LoginScreen({navigation}) {
             placeholder={"username"}
             autoFocus={true}
             keyboardType={"email-address"}
+            style={styles.usernameStyle}
         />
         <TextInput
             onChangeText={setPassword}
             value={password}
             placeholder={"password"}
             secureTextEntry={true}
+            style={styles.PasswordStyle}
         />
         <Button
-            onPress={() => navigation.navigate('Register')}
-            title='Registrarse' color="red"
+            onPress={onPress}
+            title='Login' color="blue"
         />
       <StatusBar style="auto" />
     </View>
@@ -103,13 +114,30 @@ const styles = StyleSheet.create({
         paddingBottom: 80,
     },
     container2: {
-        backgroundColor:"white",
-        flex: 1,
+        backgroundColor:"#b2c8ff",
         alignItems: "center",
-        justifyContent: "space-between",
-        paddingHorizontal: 20,
-        paddingBottom: 50,
-        paddingTop: 100,
+        flex: 1,
+    },
+    usernameStyle: {
+      borderStyle: "dotted",
+      borderWidth: 2,
+      width: 200,
+      paddingLeft: 70,
+      paddingTop: 8,
+      paddingBottom: 8,
+      borderColor: "blue",
+      marginTop: 30,
+    },
+    PasswordStyle: {
+      borderStyle: "dotted",
+      borderWidth: 2,
+      width: 200,
+      paddingLeft: 70,
+      paddingTop: 8,
+      paddingBottom: 8,
+      borderColor: "blue",
+      marginTop: 30,
+      marginBottom: 30,
     },
     error: {
         opacity: 0.7,
