@@ -10,7 +10,7 @@ function WelcomeScreen({navigation}) {
    return (
        // para darle css/stilo a las etiquetas debes agregar un style={...}
     <View style={styles.container}>
-        <Image source={{uri: 'https://reactjs.org/logo-og.png'}} style={{width: 200, height: 200}} />
+        <Image source={{uri: 'http://clipart-library.com/images_k/png-images-with-transparent-background/png-images-with-transparent-background-1.png'}} style={{width: 200, height: 200}} />
         <Text style={styles.subtitle}>
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
         </Text>
@@ -80,14 +80,9 @@ export default App;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:"pink",
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingHorizontal: 20,
-        paddingBottom: 50,
-        paddingTop: 100,
-    },
+        backgroundColor:"#b2c8ff",
+        flexDirection: "column",
+              },
     title: {
         color: "black",
         fontSize: 28,
