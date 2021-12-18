@@ -10,11 +10,13 @@ function WelcomeScreen({navigation}) {
    return (
        // para darle css/stilo a las etiquetas debes agregar un style={...}
     <View style={styles.container}>
-        <Image source={{uri: 'http://clipart-library.com/images_k/png-images-with-transparent-background/png-images-with-transparent-background-1.png'}} style={{width: 200, height: 200}} />
+        <Image source={{uri: 'http://clipart-library.com/images_k/png-images-with-transparent-background/png-images-with-transparent-background-1.png'}} 
+        style={{width: 300, height: 300,}} />
         <Text style={styles.subtitle}>
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
         </Text>
-        <Button onPress={() => navigation.navigate('Login')}  title="Continuar"  color="blue" />
+        <Button onPress={() => navigation.navigate('Login')}  title="Continuar"  color="blue"
+        />
       <StatusBar style="auto" />
     </View>
   );
@@ -82,6 +84,12 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor:"#b2c8ff",
         flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingHorizontal: 30,
+        paddingBottom: 30,
+        paddingTop: 20,
+        flex: 1,
               },
     title: {
         color: "black",
@@ -92,6 +100,7 @@ const styles = StyleSheet.create({
         color: "black",
         fontSize: 20,
         textAlign: "justify",
+        paddingBottom: 80,
     },
     container2: {
         backgroundColor:"white",
