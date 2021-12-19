@@ -68,15 +68,34 @@ function LoginScreen({navigation}) {
 function WikiScreen({navigation}){
     return (
       <View style={styles.container3}>
-          <Image source={{uri: 'https://wp-mktg.prod.getty1.net/istockcontentredesign/wp-content/uploads/sites/5/2021/04/2021_Composite_2304x1274_hero.jpg.jpeg'}}
-          style={{width: 200, height: 200,}} />
-          <Image source={{uri: 'https://cdn.shopify.com/s/files/1/0229/0839/files/bancos_de_imagenes_gratis.jpg?v=1630420628&width=1024'}}
-          style={{width: 200, height: 200,}} />
-          <Image source={{uri: 'https://3dandroidwallpaper.com/wp-content/uploads/2018/03/Android-Wallpaper-HD-Goku-Imagenes.jpg'}}
-          style={{width: 200, height: 200,}} />
-
+          <View style={styles.RowStyle}>
+            <Image source={{uri: 'https://wp-mktg.prod.getty1.net/istockcontentredesign/wp-content/uploads/sites/5/2021/04/2021_Composite_2304x1274_hero.jpg.jpeg'}}
+            style={styles.ImageGallery} />
+            <Image source={{uri: 'https://cdn.shopify.com/s/files/1/0229/0839/files/bancos_de_imagenes_gratis.jpg?v=1630420628&width=1024'}}
+            style={styles.ImageGallery} />
+            <Image source={{uri: 'https://3dandroidwallpaper.com/wp-content/uploads/2018/03/Android-Wallpaper-HD-Goku-Imagenes.jpg'}}
+            style={styles.ImageGallery} />
+          </View>
+          <View style={styles.RowStyle}>
+              <Image source={{uri: 'https://www.smashbros.com/assets_v2/img/fighter/link/main2.png'}}
+              style={styles.ImageGallery} />
+              <Image source={{uri: 'https://tvovermind.com/wp-content/uploads/2021/08/Saint-Seiya-750x422.jpg'}}
+              style={styles.ImageGallery} />
+              <Image source={{uri: 'http://pm1.narvii.com/7818/4cb1b15a04085c0eaacf5495eee8b116955e8d55r1-800-1000v2_00.jpg'}}
+              style={styles.ImageGallery} />
+          </View>
+          <View style={styles.RowStyle}>
+                <Image source={{uri: 'https://i.ytimg.com/vi/OWcSJvq1tSc/hqdefault.jpg'}}
+                style={styles.ImageGallery} />
+                <Image source={{uri: 'https://i.ytimg.com/vi/yJJtdv9fcDo/hqdefault.jpg'}}
+                style={styles.ImageGallery} />
+                <Image source={{uri: 'https://wl-genial.cf.tsp.li/resize/728x/jpg/f22/83b/2585e75b99a2cd3ebb4a0daab5.jpg'}}
+                style={styles.ImageGallery} />
+          </View>
+          <View style={styles.ButtonStyle}>
           <Button onPress={() => navigation.navigate('Register')}  title="Continuar"  color="blue"
           />
+          </View>
         <StatusBar style="auto" />
       </View>
     );
@@ -160,13 +179,29 @@ const styles = StyleSheet.create({
       marginTop: 30,
       marginBottom: 30,
     },
-      container3: {
-      backgroundColor: "#b2c8ff",
+    container3: {
+      backgroundColor:"#b2c8ff",
       flexDirection: "column",
-      alignItems: "center",
-      paddingTop: 80,
       flex: 1,
     },
+     RowStyle: {
+       flexDirection: "row",
+       flex: 1,
+       justifyContent: "space-between",
+       alignItems: "center",
+       marginLeft: 20,
+       marginRight: 20,
+     },
+     ButtonStyle:{
+       paddingBottom: 20,
+     },
+     ImageGallery: {
+       width: 100,
+       height: 100,
+       paddingHorizontal: 10,
+       borderRadius: 25,
+       backgroundColor: "black",
+     },
     error: {
         opacity: 0.7,
         color: "red",
