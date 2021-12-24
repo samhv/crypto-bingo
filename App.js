@@ -93,12 +93,26 @@ function WikiScreen({navigation}){
                 style={styles.ImageGallery} />
           </View>
           <View style={styles.ButtonStyle}>
-          <Button onPress={() => navigation.navigate('Register')}  title="Continuar"  color="blue"
+          <Button onPress={() => navigation.navigate('Detail')}  title="Continuar"  color="blue"
           />
           </View>
         <StatusBar style="auto" />
       </View>
     );
+    }
+
+  function DetailScreen(){
+    return (
+      <View style={styles.register}>
+          <Text style={styles.title3}>Registrate en Bingo =)</Text>
+            <View>
+                <Text style={styles.error}>Aqui va el futuro menu de registro
+                </Text>
+            </View>
+            <Button onPress={() => navigation.navigate('Register')}  title="Continuar"  color="blue"
+            />
+      </View>
+        );
     }
 
 /*Brakmel estuvo aqui*/
@@ -123,6 +137,7 @@ function App() {
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Wiki" component={WikiScreen} />
+        <Stack.Screen name="Detail" component={DetailScreen}/>
         <Stack.Screen name="Register" component={RegisterScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
