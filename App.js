@@ -131,12 +131,47 @@ function RegisterScreen(){
     );
 }
 
+function DrawerContent({navigation}){
+    return (
+        <View style={styles.DrawerContentStyle}>
+          <View style={styles.DrawerContentStyle6}>
+              <Text style={styles.TextDrawerStyle}>
+              👤
+              </Text>
+              <Text style={styles.TextDrawerStyle2}>
+              Welcome to the best App
+              </Text>
+              <View style={styles.ButtonStyle2}>
+              <Button onPress={() => navigation.navigate('Login')}  title="Logout"  color="blue"
+              />
+              </View>
+          </View>
+          <View style={styles.DrawerStyle5}>
+              <Text style={styles.TextDrawerStyle3}>
+              Created with ❤️ by:
+              </Text>
+              <View style={styles.DrawerStyle4}>
+                <Text style={styles.TextDrawerStyle4}>
+                - Sam Hernandez
+                </Text>
+                <Text style={styles.TextDrawerStyle4}>
+                - Oscar Santiago
+                </Text>
+                <Text style={styles.TextDrawerStyle4}>
+                - Luis Bohorquez
+                </Text>
+              </View>
+          </View>
+        </View>
+    );
+  }
+
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function WikiNavigator() {
   return (
-      <Drawer.Navigator initialRouteName="WikiHome">
+      <Drawer.Navigator initialRouteName="WikiHome" drawerContent={(props) => <DrawerContent{...props} />}>
         <Drawer.Screen name="WikiHome" component={WikiScreen} />
         <Drawer.Screen name="WikiDetail" component={DetailScreen} />
       </Drawer.Navigator>
@@ -223,12 +258,53 @@ const styles = StyleSheet.create({
      ButtonStyle:{
        paddingBottom: 20,
      },
+     ButtonStyle2:{
+       borderColor: "blue",
+       borderStyle: "solid",
+       borderWidth: 0.8,
+       borderRadius: 7,
+       marginTop: 20,
+     },
      ImageGallery: {
        width: 100,
        height: 100,
        paddingHorizontal: 10,
        borderRadius: 25,
        backgroundColor: "black",
+     },
+     DrawerContentStyle: {
+       paddingTop: 40,
+       flex: 1,
+       justifyContent: "space-between",
+       backgroundColor:"#b2c8ff",
+     },
+     DrawerContentStyle6: {
+       alignItems: "center",
+     },
+     TextDrawerStyle: {
+       fontSize: 60,
+     },
+     TextDrawerStyle2: {
+       fontSize: 20,
+       paddingTop: 30,
+       color: "white",
+     },
+     TextDrawerStyle3: {
+       fontSize: 20,
+       fontWeight: "bold",
+       color: "white",
+     },
+     TextDrawerStyle4: {
+       color: "white",
+     },
+     DrawerStyle4: {
+       fontSize: 10,
+       paddingLeft: 20,
+       paddingTop: 6,
+     },
+     DrawerStyle5: {
+       marginBottom: 40,
+       paddingLeft: 20,
      },
     error: {
         opacity: 0.7,
