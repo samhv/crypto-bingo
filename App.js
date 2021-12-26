@@ -185,7 +185,6 @@ function EntryNavigator() {
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Wiki" component={WikiNavigator} />
-        <Stack.Screen name="Detail" component={DetailScreen}/>
         <Stack.Screen name="Register" component={RegisterScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
