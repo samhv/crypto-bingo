@@ -95,10 +95,6 @@ function WikiScreen({navigation}){
                 <Image source={{uri: 'https://wl-genial.cf.tsp.li/resize/728x/jpg/f22/83b/2585e75b99a2cd3ebb4a0daab5.jpg'}}
                 style={styles.ImageGallery} />
           </View>
-          <View style={styles.ButtonStyle}>
-          <Button onPress={() => navigation.navigate('Detail')}  title="Continuar"  color="blue"
-          />
-          </View>
         <StatusBar style="auto" />
       </View>
     );
@@ -254,10 +250,7 @@ const styles = StyleSheet.create({
        alignItems: "center",
        marginLeft: 20,
        marginRight: 20,
-     },
-     ButtonStyle:{
-       paddingBottom: 20,
-     },
+    },
      ButtonStyle2:{
        borderColor: "blue",
        borderStyle: "solid",
