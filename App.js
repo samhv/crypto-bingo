@@ -1,8 +1,11 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Button, Image, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
 
 
 /*Eso es la pagina de "bienvenido"*/
@@ -104,11 +107,11 @@ function WikiScreen({navigation}){
   function DetailScreen(){
     return (
       <View style={styles.register}>
-          <Text style={styles.title3}>Registrate en Bingo =)</Text>
-            <View>
-                <Text style={styles.error}>Aqui va el futuro menu de registro
-                </Text>
-            </View>
+        <Text>
+        ❤️
+        💬
+        🔁
+        </Text>
             <Button onPress={() => navigation.navigate('Register')}  title="Continuar"  color="blue"
             />
       </View>
@@ -129,14 +132,24 @@ function RegisterScreen(){
 }
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
-function App() {
+function WikiNavigator() {
+  return (
+      <Drawer.Navigator initialRouteName="WikiHome">
+        <Drawer.Screen name="WikiHome" component={WikiScreen} />
+        <Drawer.Screen name="WikiDetail" component={DetailScreen} />
+      </Drawer.Navigator>
+  );
+}
+
+function EntryNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Wiki" component={WikiScreen} />
+        <Stack.Screen name="Wiki" component={WikiNavigator} />
         <Stack.Screen name="Detail" component={DetailScreen}/>
         <Stack.Screen name="Register" component={RegisterScreen}/>
       </Stack.Navigator>
@@ -144,7 +157,7 @@ function App() {
   );
 }
 
-export default App;
+export default EntryNavigator;
 
 const styles = StyleSheet.create({
     container: {
