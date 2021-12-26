@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Button, Image, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -68,48 +68,58 @@ function LoginScreen({navigation}) {
 
 /*esta es la pagina de wiki, modificar boton por sidebar*/
 
+function WikiImage({ uriImage, navigation }){
+  const onPress = () => {
+    navigation.navigate('WikiDetail', {
+      uriParam: uriImage,
+    });
+  }
+  return (<TouchableOpacity
+    onPress={onPress}
+    >
+    <Image source={{uri: uriImage }}
+    style={styles.ImageGallery} />
+    </TouchableOpacity>)
+}
+
+
 function WikiScreen({navigation}){
     return (
       <View style={styles.container3}>
           <View style={styles.RowStyle}>
-            <Image source={{uri: 'https://wp-mktg.prod.getty1.net/istockcontentredesign/wp-content/uploads/sites/5/2021/04/2021_Composite_2304x1274_hero.jpg.jpeg'}}
-            style={styles.ImageGallery} />
-            <Image source={{uri: 'https://cdn.shopify.com/s/files/1/0229/0839/files/bancos_de_imagenes_gratis.jpg?v=1630420628&width=1024'}}
-            style={styles.ImageGallery} />
-            <Image source={{uri: 'https://3dandroidwallpaper.com/wp-content/uploads/2018/03/Android-Wallpaper-HD-Goku-Imagenes.jpg'}}
-            style={styles.ImageGallery} />
+              <WikiImage uriImage={'https://wp-mktg.prod.getty1.net/istockcontentredesign/wp-content/uploads/sites/5/2021/04/2021_Composite_2304x1274_hero.jpg.jpeg'} navigation={navigation}/>
+              <WikiImage uriImage={'https://cdn.shopify.com/s/files/1/0229/0839/files/bancos_de_imagenes_gratis.jpg?v=1630420628&width=1024'} navigation={navigation}/>
+              <WikiImage uriImage={'https://3dandroidwallpaper.com/wp-content/uploads/2018/03/Android-Wallpaper-HD-Goku-Imagenes.jpg'} navigation={navigation}/>
           </View>
           <View style={styles.RowStyle}>
-              <Image source={{uri: 'https://www.smashbros.com/assets_v2/img/fighter/link/main2.png'}}
-              style={styles.ImageGallery} />
-              <Image source={{uri: 'https://tvovermind.com/wp-content/uploads/2021/08/Saint-Seiya-750x422.jpg'}}
-              style={styles.ImageGallery} />
-              <Image source={{uri: 'http://pm1.narvii.com/7818/4cb1b15a04085c0eaacf5495eee8b116955e8d55r1-800-1000v2_00.jpg'}}
-              style={styles.ImageGallery} />
+              <WikiImage uriImage={'https://www.smashbros.com/assets_v2/img/fighter/link/main2.png'} navigation={navigation}/>
+              <WikiImage uriImage={'https://tvovermind.com/wp-content/uploads/2021/08/Saint-Seiya-750x422.jpg'} navigation={navigation}/>
+              <WikiImage uriImage={'http://pm1.narvii.com/7818/4cb1b15a04085c0eaacf5495eee8b116955e8d55r1-800-1000v2_00.jpg'} navigation={navigation}/>
           </View>
           <View style={styles.RowStyle}>
-                <Image source={{uri: 'https://i.ytimg.com/vi/OWcSJvq1tSc/hqdefault.jpg'}}
-                style={styles.ImageGallery} />
-                <Image source={{uri: 'https://i.ytimg.com/vi/yJJtdv9fcDo/hqdefault.jpg'}}
-                style={styles.ImageGallery} />
-                <Image source={{uri: 'https://wl-genial.cf.tsp.li/resize/728x/jpg/f22/83b/2585e75b99a2cd3ebb4a0daab5.jpg'}}
-                style={styles.ImageGallery} />
+                <WikiImage uriImage={'https://i.ytimg.com/vi/OWcSJvq1tSc/hqdefault.jpg'} navigation={navigation}/>
+                <WikiImage uriImage={'https://i.ytimg.com/vi/yJJtdv9fcDo/hqdefault.jpg'} navigation={navigation}/>
+                <WikiImage uriImage={'https://wl-genial.cf.tsp.li/resize/728x/jpg/f22/83b/2585e75b99a2cd3ebb4a0daab5.jpg'} navigation={navigation}/>
           </View>
         <StatusBar style="auto" />
       </View>
     );
     }
 
-  function DetailScreen(){
+  function DetailScreen({ route }){
+    const {uriParam} = route.params;
     return (
-      <View style={styles.register}>
-        <Text>
+      <View style={styles.DetailScreen2}>
+        <View>
+        <Image source={{uri: uriParam}} style={styles.DetailImage} />
+        </View>
+        <View>
+        <Text style={styles.TextDeatil}>
         ❤️
         💬
         🔁
         </Text>
-            <Button onPress={() => navigation.navigate('Register')}  title="Continuar"  color="blue"
-            />
+        </View>
       </View>
         );
     }
@@ -169,7 +179,6 @@ function WikiNavigator() {
   return (
       <Drawer.Navigator initialRouteName="WikiHome" drawerContent={(props) => <DrawerContent{...props} />}>
         <Drawer.Screen name="WikiHome" component={WikiScreen} />
-        <Drawer.Screen name="WikiDetail" component={DetailScreen} />
       </Drawer.Navigator>
   );
 }
@@ -181,6 +190,7 @@ function EntryNavigator() {
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Wiki" component={WikiNavigator} />
+        <Stack.Screen name="WikiDetail" component={DetailScreen} />
         <Stack.Screen name="Register" component={RegisterScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
@@ -257,6 +267,17 @@ const styles = StyleSheet.create({
        borderRadius: 7,
        marginTop: 20,
      },
+     DetailImage: {
+       width: 200,
+       height: 300,
+       borderRadius: 20,
+     },
+     DetailScreen2: {
+       alignItems: "center",
+       paddingTop: 80,
+       flex: 1,
+       backgroundColor:"#b2c8ff",
+     },
      ImageGallery: {
        width: 100,
        height: 100,
@@ -288,6 +309,10 @@ const styles = StyleSheet.create({
      },
      TextDrawerStyle4: {
        color: "white",
+     },
+     TextDeatil: {
+       fontSize: 80,
+       paddingTop: 90,
      },
      DrawerStyle4: {
        fontSize: 10,
