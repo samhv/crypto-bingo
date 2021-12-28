@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Button, Image, TextInput } from 'react-native';
+import { Share, StyleSheet, Text, TouchableOpacity, View, Button, Image, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -104,22 +104,80 @@ function WikiScreen({navigation}){
         <StatusBar style="auto" />
       </View>
     );
+}
+
+function ShareButton({ uriImage }){
+    const onPress = () => {
+      const result = Share.share({
+        message: uriImage
+      });
+    }
+    return (<TouchableOpacity
+      onPress={onPress}
+      >
+      <Text style={styles.TextDeatil}>
+      🔁
+      </Text>
+      </TouchableOpacity>)
+  }
+
+function Comment(){
+    const onPress = () => {}
+    return (<TouchableOpacity
+      onPress={onPress}
+      >
+      <Text style={styles.TextDeatil}>
+      💬
+      </Text>
+      </TouchableOpacity>)
+  }
+
+function Like(){
+    const [count, setCount] = useState(0);
+    const onPress = () => {
+      setCount(prevCount => prevCount + 1);
     }
 
-  function DetailScreen({ route }){
+    if (count == 0) {
+      return (
+        <View>
+        <TouchableOpacity onPress={onPress}>
+          <Text style={styles.TextDeatil}>
+              🖤
+          </Text>
+          <Text style={styles.TextLike2}>
+              You like?
+          </Text>
+        </TouchableOpacity>
+        </View>
+      );
+    }
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <Text style={styles.TextDeatil}>
+          ❤️
+        </Text>
+        <Text style={styles.TextLike}>
+          {count}
+        </Text>
+      </TouchableOpacity>
+    )
+}
+
+
+
+function DetailScreen({ route }){
     const {uriParam} = route.params;
     return (
       <View style={styles.DetailScreen2}>
-        <View>
-        <Image source={{uri: uriParam}} style={styles.DetailImage} />
-        </View>
-        <View>
-        <Text style={styles.TextDeatil}>
-        ❤️
-        💬
-        🔁
-        </Text>
-        </View>
+          <View>
+              <Image source={{uri: uriParam}} style={styles.DetailImage} />
+          </View>
+          <View style={styles.ViewDetail}>
+            <Like />
+            <Comment />
+            <ShareButton uriImage={uriParam} />
+          </View>
       </View>
         );
     }
@@ -158,13 +216,13 @@ function DrawerContent({navigation}){
               </Text>
               <View style={styles.DrawerStyle4}>
                 <Text style={styles.TextDrawerStyle4}>
-                - Sam Hernandez
-                </Text>
-                <Text style={styles.TextDrawerStyle4}>
                 - Oscar Santiago
                 </Text>
                 <Text style={styles.TextDrawerStyle4}>
                 - Luis Bohorquez
+                </Text>
+                <Text style={styles.TextDrawerStyle4}>
+                - Sam Hernandez
                 </Text>
               </View>
           </View>
@@ -313,6 +371,20 @@ const styles = StyleSheet.create({
      TextDeatil: {
        fontSize: 80,
        paddingTop: 90,
+       paddingHorizontal: 10,
+     },
+     TextLike: {
+       paddingLeft: 45,
+       color: "white",
+       fontWeight: "bold",
+     },
+     TextLike2: {
+       paddingLeft: 25,
+       color: "white",
+       fontWeight: "bold",
+     },
+     ViewDetail: {
+       flexDirection: "row",
      },
      DrawerStyle4: {
        fontSize: 10,
