@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { Share, StyleSheet, Text, TouchableOpacity, View, Button, Image, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
@@ -153,8 +153,9 @@ function Like () {
 }
 
 // Comment button
-function Comment () {
+function Comment ({navigation}) {
       const onPress = () => {
+        navigation.navigate('Comments');
       }
       return (
         <TouchableOpacity onPress={onPress}>
@@ -164,8 +165,19 @@ function Comment () {
         </TouchableOpacity>
         )
 }
-
-function DetailScreen({ route }){
+// Screen Comment
+function ScreenComment () {
+    const onPress = () => {
+    }
+    return(
+      <View style={styles.CommentContainer}>
+        <Text>
+        Comentarios :)
+      </Text>
+      </View>
+    )
+}
+function DetailScreen({ route, navigation }){
        const {uriParam} = route.params;
        return (
          <View style={styles.DetailScreen2}>
@@ -174,7 +186,7 @@ function DetailScreen({ route }){
            </View>
            <View style={ styles.ActionsContainer}>
              <Like />
-             <Comment />
+             <Comment navigation={navigation} />
              <ShareButton uriImage={uriParam} />
            </View>
          </View>
@@ -229,7 +241,7 @@ function DrawerContent({navigation}){
     );
   }
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function WikiNavigator() {
@@ -249,6 +261,7 @@ function EntryNavigator() {
         <Stack.Screen name="Wiki" component={WikiNavigator} />
         <Stack.Screen name="WikiDetail" component={DetailScreen} />
         <Stack.Screen name="Register" component={RegisterScreen}/>
+        <Stack.Screen name="Comments" component={ScreenComment} options={{ presentation: 'modal', headerShown: false, gestureResponseDistance: 1300, contentStyle: {backgroundColor: "transparent"}, cardStyle: {backgroundColor: "transparent"}}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -403,5 +416,15 @@ const styles = StyleSheet.create({
       },
     ActionsContainer: {
       flexDirection: "row",
-    },  
+    }, 
+    CommentContainer: {
+      backgroundColor: "white",
+       width: "100%",
+       height: 500,
+       position: "absolute",
+       bottom: 0,
+       borderTopRightRadius: 60,
+      borderTopLeftRadius: 60,
+      alignItems: "center",
+    } 
 });
