@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Button, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Button, Image, TextInput, Share } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -74,12 +74,11 @@ function WikiImage({ uriImage, navigation }){
       uriParam: uriImage,
     });
   }
-  return (<TouchableOpacity
-    onPress={onPress}
-    >
-    <Image source={{uri: uriImage }}
-    style={styles.ImageGallery} />
-    </TouchableOpacity>)
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Image source={{uri: uriImage }} style={styles.ImageGallery} />
+    </TouchableOpacity>
+    )
 }
 
 
@@ -105,25 +104,78 @@ function WikiScreen({navigation}){
       </View>
     );
     }
+    
+    function ShareButton ({uriImage}) {
+      const onPress = () => {
+          Share.share({
+            message: uriImage
+          });
+      }
+      return (
+        <TouchableOpacity onPress={onPress}>
+          <Text style={styles.TextDeatil}>
+            🔁
+          </Text>
+        </TouchableOpacity>
+        )
+    }
+
+    function Like () {
+      // let contadorLike = 0;
+      const [ contadorLike, setContadorLike] = useState(0)
+      
+      const onPress = () => {
+        // contadorLike = contadorLike + 1;
+        setContadorLike(contadorLike + 1)
+      }
+      if (contadorLike == 0) {
+        return (
+          <TouchableOpacity onPress={onPress}>
+            <Text style={styles.TextDeatil}>
+              🤍
+            </Text>
+          </TouchableOpacity>
+        )
+      } else {
+        return (
+          <TouchableOpacity onPress={onPress}>
+            <Text style={styles.TextDeatil}>
+              ❤️
+              {contadorLike}
+            </Text>
+          </TouchableOpacity>
+          )
+      }
+    }
+    function Comment () {
+      const onPress = () => {
+      }
+      return (
+        <TouchableOpacity onPress={onPress}>
+          <Text style={styles.TextDeatil}>
+            💬
+          </Text>
+        </TouchableOpacity>
+        )
+    }
 
   function DetailScreen({ route }){
     const {uriParam} = route.params;
     return (
       <View style={styles.DetailScreen2}>
         <View>
-        <Image source={{uri: uriParam}} style={styles.DetailImage} />
+          <Image source={{uri: uriParam}} style={styles.DetailImage} />
         </View>
-        <View>
-        <Text style={styles.TextDeatil}>
-        ❤️
-        💬
-        🔁
-        </Text>
+        <View style={ styles.ActionsContainer}>
+          <Like />
+          <Comment />
+          <ShareButton uriImage={uriParam} />
         </View>
       </View>
         );
     }
 
+    
 /*Brakmel estuvo aqui*/
 function RegisterScreen(){
     return (
@@ -328,5 +380,9 @@ const styles = StyleSheet.create({
         color: "red",
         fontSize: 30,
         textAlign: "justify",
-    },
+    
+      },
+    ActionsContainer: {
+      flexDirection: "row",
+    },  
 });
