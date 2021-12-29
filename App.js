@@ -143,6 +143,8 @@ function Like () {
           <TouchableOpacity onPress={onPress}>
             <Text style={styles.TextDeatil}>
               ❤️
+            </Text>
+            <Text style={styles.TextLike}>
               {contadorLike}
             </Text>
           </TouchableOpacity>
