@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Share, StyleSheet, Text, TouchableOpacity, View, Button, Image, TextInput } from 'react-native';
+import { Share, StyleSheet, Text, TouchableOpacity, View, Button, Image, TextInput, Modal } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -112,23 +112,21 @@ function ShareButton({ uriImage }){
         message: uriImage
       });
     }
-    return (<TouchableOpacity
-      onPress={onPress}
-      >
-      <Text style={styles.TextDeatil}>
-      🔁
-      </Text>
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <Text style={styles.TextDeatil}>
+          🔁
+        </Text>
       </TouchableOpacity>)
   }
 
 function Comment(){
     const onPress = () => {}
-    return (<TouchableOpacity
-      onPress={onPress}
-      >
-      <Text style={styles.TextDeatil}>
-      💬
-      </Text>
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <Text style={styles.TextDeatil}>
+          💬
+        </Text>
       </TouchableOpacity>)
   }
 
